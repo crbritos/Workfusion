@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recorder:ActionFlow xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:recorder="http://www.workfusion.com/recorder/v2.3.0.1" ignoreDelays="false">
+  <variables>
+    <variable name="cnpj_length" type="NUMBER" value="0"/>
+    <variable name="um_zero" type="STRING" value="0"/>
+    <variable name="dois_zero" type="STRING" value="00"/>
+    <variable name="tres_zero" type="STRING" value="000"/>
+    <variable name="quatro_zero" type="STRING" value="0000"/>
+    <variable name="cinco_zero" type="STRING" value="00000"/>
+    <variable name="seis_zero" type="STRING" value="000000"/>
+    <variable name="cnpj" type="LIST" value="[]"/>
+    <variable name="new_cnpj" type="STRING" value=""/>
+    <variable name="constant" type="NUMBER" value="2"/>
+    <variable name="del_list_a" type="LIST" value="[]"/>
+    <variable name="del_list_b" type="LIST" value="[]"/>
+    <variable name="constant_a" type="NUMBER" value="0"/>
+    <variable name="constant_b" type="NUMBER" value="0"/>
+  </variables>
+  <actions xsi:type="recorder:OpenSpreadsheetAction" active="true" actionDetails="(&quot;C:\Users\gabri...el_aceite.xlsx&quot;)" delay="0" comment="" filePath="C:\Users\gabri\OneDrive\Documentos\empresas\02\rel_aceite.xlsx">
+    <actions xsi:type="recorder:GetColumnAction" varName="cnpj" active="true" actionDetails="(K)" delay="0" useIdx="true" idx="K"/>
+  </actions>
+  <actions xsi:type="recorder:ForeachAction" active="true" actionDetails="(element) in (cnpj)" delay="0" varName="cnpj" pointerName="element" filterExpression="2-*">
+    <actions xsi:type="recorder:TextLengthAction" active="true" actionDetails="('element' to 'cnpj_length')" delay="0" targetVariable="cnpj_length" sourceVariable="element"/>
+    <actions xsi:type="recorder:ExpressionValueAction" active="true" actionDetails="(to 'cnpj_length')" delay="0" varName="cnpj_length">
+      <bigDecimalExpressionHandler expression="14-${cnpj_length}"/>
+      <listExpressionHandler operationType="PUSH"/>
+      <tableExpressionHandler operationType="PUSH" tablePushType="AS_ROW"/>
+    </actions>
+    <actions xsi:type="recorder:IfElseAction" active="true" actionDetails="(cnpj_length = &quot;1&quot;)" delay="0" leftOperand="${cnpj_length}" rightOperand="1" leftOperandType="VARIABLE" rightOperandType="NUMBER">
+      <ifBlock active="true">
+        <actions xsi:type="recorder:TextJoinAction" active="true" actionDetails="('um_zero', 'element' to 'new_cnpj')" delay="0" targetVariable="new_cnpj">
+          <sourceVariable>um_zero</sourceVariable>
+          <sourceVariable>element</sourceVariable>
+        </actions>
+      </ifBlock>
+      <elseBlock active="true">
+        <actions xsi:type="recorder:IfElseAction" active="true" actionDetails="(cnpj_length = &quot;2&quot;)" delay="0" leftOperand="${cnpj_length}" rightOperand="2" leftOperandType="VARIABLE" rightOperandType="NUMBER">
+          <ifBlock active="true">
+            <actions xsi:type="recorder:TextJoinAction" active="true" actionDetails="('dois_zero', 'element' to 'new_cnpj')" delay="0" targetVariable="new_cnpj">
+              <sourceVariable>dois_zero</sourceVariable>
+              <sourceVariable>element</sourceVariable>
+            </actions>
+          </ifBlock>
+          <elseBlock active="true">
+            <actions xsi:type="recorder:IfElseAction" active="true" actionDetails="(cnpj_length = &quot;3&quot;)" delay="0" leftOperand="${cnpj_length}" rightOperand="3" leftOperandType="VARIABLE" rightOperandType="NUMBER">
+              <ifBlock active="true">
+                <actions xsi:type="recorder:TextJoinAction" active="true" actionDetails="('tres_zero', 'element' to 'new_cnpj')" delay="0" targetVariable="new_cnpj">
+                  <sourceVariable>tres_zero</sourceVariable>
+                  <sourceVariable>element</sourceVariable>
+                </actions>
+              </ifBlock>
+              <elseBlock active="true">
+                <actions xsi:type="recorder:IfElseAction" active="true" actionDetails="(cnpj_length = &quot;4&quot;)" delay="0" leftOperand="${cnpj_length}" rightOperand="4" leftOperandType="VARIABLE" rightOperandType="NUMBER">
+                  <ifBlock active="true">
+                    <actions xsi:type="recorder:TextJoinAction" active="true" actionDetails="('quatro_zero', 'element' to 'new_cnpj')" delay="0" targetVariable="new_cnpj">
+                      <sourceVariable>quatro_zero</sourceVariable>
+                      <sourceVariable>element</sourceVariable>
+                    </actions>
+                  </ifBlock>
+                  <elseBlock active="true">
+                    <actions xsi:type="recorder:IfElseAction" active="true" actionDetails="(cnpj_length = &quot;5&quot;)" delay="0" leftOperand="${cnpj_length}" rightOperand="5" leftOperandType="VARIABLE" rightOperandType="NUMBER">
+                      <ifBlock active="true">
+                        <actions xsi:type="recorder:TextJoinAction" active="true" actionDetails="('cinco_zero', 'element' to 'new_cnpj')" delay="0" targetVariable="new_cnpj">
+                          <sourceVariable>cinco_zero</sourceVariable>
+                          <sourceVariable>element</sourceVariable>
+                        </actions>
+                      </ifBlock>
+                      <elseBlock active="true">
+                        <actions xsi:type="recorder:IfElseAction" active="true" actionDetails="(cnpj_length = &quot;6&quot;)" delay="0" leftOperand="${cnpj_length}" rightOperand="6" leftOperandType="VARIABLE" rightOperandType="NUMBER">
+                          <ifBlock active="true">
+                            <actions xsi:type="recorder:TextJoinAction" active="true" actionDetails="('seis_zero', 'element' to 'new_cnpj')" delay="0" targetVariable="new_cnpj">
+                              <sourceVariable>seis_zero</sourceVariable>
+                              <sourceVariable>element</sourceVariable>
+                            </actions>
+                          </ifBlock>
+                          <elseBlock active="true">
+                            <actions xsi:type="recorder:IfElseAction" active="true" actionDetails="(cnpj_length = &quot;0&quot;)" delay="0" leftOperand="${cnpj_length}" rightOperand="0" leftOperandType="VARIABLE" rightOperandType="NUMBER">
+                              <ifBlock active="true">
+                                <actions xsi:type="recorder:TextJoinAction" active="true" actionDetails="('element' to 'new_cnpj')" delay="0" targetVariable="new_cnpj">
+                                  <sourceVariable>element</sourceVariable>
+                                </actions>
+                              </ifBlock>
+                              <elseBlock active="true"/>
+                            </actions>
+                          </elseBlock>
+                        </actions>
+                      </elseBlock>
+                    </actions>
+                  </elseBlock>
+                </actions>
+              </elseBlock>
+            </actions>
+          </elseBlock>
+        </actions>
+      </elseBlock>
+    </actions>
+    <actions xsi:type="recorder:OpenSpreadsheetAction" active="true" actionDetails="(&quot;C:\Users\gabri...el_aceite.xlsx&quot;)" delay="0" filePath="C:\Users\gabri\OneDrive\Documentos\empresas\02\rel_aceite.xlsx" autoSaveFile="true">
+      <actions xsi:type="recorder:SetCellValueAction" varName="new_cnpj" active="true" actionDetails="(K${constant})" delay="0" useCellCoordinates="true" cellCoordinates="K${constant}" cellPosition="CELL_BELOW"/>
+      <actions xsi:type="recorder:ExpressionValueAction" active="true" actionDetails="(to 'constant')" delay="0" varName="constant">
+        <bigDecimalExpressionHandler expression="${constant}+1"/>
+        <listExpressionHandler operationType="PUSH"/>
+        <tableExpressionHandler operationType="PUSH" tablePushType="AS_ROW"/>
+      </actions>
+    </actions>
+  </actions>
+  <settings/>
+</recorder:ActionFlow>
